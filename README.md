@@ -5,15 +5,11 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/jasonadriaan/videocloudanalytics/Check%20&%20fix%20styling?label=code%20style)](https://github.com/jasonadriaan/videocloudanalytics/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/jasonadriaan/videocloudanalytics.svg?style=flat-square)](https://packagist.org/packages/jasonadriaan/videocloudanalytics)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+This package makes it simple for you to retrieve analytics from Brightcove VideoCloud's Analytics API without having to deal with authentication or repetitive api calls.
 
-## Support us
+## Support: Buy me a coffee
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/videocloudanalytics.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/videocloudanalytics)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+I build and maintain this project in my free time. If it makes your life simpler you can Buy Me A Coffee [buy me a coffee](https://buymeacoffee.com/jasonadriaan).
 
 ## Installation
 
@@ -21,13 +17,6 @@ You can install the package via composer:
 
 ```bash
 composer require jasonadriaan/videocloudanalytics
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="videocloudanalytics-migrations"
-php artisan migrate
 ```
 
 You can publish the config file with:
@@ -43,23 +32,30 @@ return [
 ];
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="videocloudanalytics-views"
-```
-
 ## Usage
 
 ```php
-$videoCloudAnalytics = new Jasonadriaan\VideoCloudAnalytics();
-echo $videoCloudAnalytics->echoPhrase('Hello, Jasonadriaan!');
-```
 
-## Testing
+use Jasonadriaan\VideoCloudAnalytics\VideoCloudAnalytics;
 
-```bash
-composer test
+class main extends Controller
+{
+    
+    public function index(){
+
+        $videocloud = new VideoCloudAnalytics();
+        $items = $videocloud->dimensions('date')
+                            ->from('2021-08-04')
+                            ->to('2022-01-31')
+                            ->fields('date,daily_unique_viewers,video_view')
+                            ->sort('date')
+                            ->limit(30)
+                            ->get();
+        return $items;
+    }
+
+}
+
 ```
 
 ## Changelog
@@ -76,7 +72,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Jason Adriaan](https://github.com/jasonadriaan)
+- [Jason Adriaan](https://www.jasonadriaan.com)
 - [All Contributors](../../contributors)
 
 ## License
