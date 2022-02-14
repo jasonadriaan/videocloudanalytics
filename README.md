@@ -9,7 +9,7 @@ This package makes it simple for you to retrieve analytics from Brightcove Video
 
 ## Support: Buy me a coffee
 
-I build and maintain this project in my free time. If it makes your life simpler you can Buy Me A Coffee [buy me a coffee](https://buymeacoffee.com/jasonadriaan).
+I build and maintain this project in my free time. If it makes your life simpler you can [buy me a coffee](https://buymeacoffee.com/jasonadriaan).
 
 ## Installation
 
