@@ -63,10 +63,10 @@ class main extends Controller
 }
 
 ```
-
-The only required field would be the dimensions field. If you do not provide it the API call will fail. 
-
-For the full Dimension Guide please go read the [official documentation](https://apis.support.brightcove.com/analytics/dimension-guides/index.html).
+Notes:
+- The get() method will return a Laravel Collection to make it easier for you to work with the data returned.
+- The only required field would be the dimensions field. If you do not provide it the API call will fail. 
+- For the full Dimension Guide please go read the [official documentation](https://apis.support.brightcove.com/analytics/dimension-guides/index.html).
 
 
 ## Changelog
