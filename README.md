@@ -19,20 +19,26 @@ You can install the package via composer:
 composer require jasonadriaan/videocloudanalytics
 ```
 
-You can publish the config file with:
+You will need to publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="videocloudanalytics-config"
 ```
 
-This is the contents of the published config file:
+In your .env file please add the following lines with your API details from Brightcove VideoCloud
 
 ```php
-return [
-];
+VIDEOCLOUD_ACCOUNT_ID=xxxxx
+VIDEOCLOUD_API_KEY=xxxxx
+VIDEOCLOUD_API_SECRET=xxxxx
 ```
 
 ## Usage
+
+I would recommend you go ahead and read the [VideoCloud Analytics API documentation](https://apis.support.brightcove.com/analytics/index.html) to understand
+the underlying API.
+
+Basic usage within your app would be as follows:
 
 ```php
 
@@ -57,6 +63,9 @@ class main extends Controller
 }
 
 ```
+
+The only required field would be the dimensions field. If you do not provide it the API call will fail.
+
 
 ## Changelog
 
