@@ -16,10 +16,17 @@ class VideoCloudAnalytics
 {
     private $query;
 
-    // This method sets up the API query with Dimensions as a required parameter.
+    // This method sets up the API query
 
-    public function analytics($dimensions){
-        $this->query = 'https://analytics.api.brightcove.com/v1/data?accounts=' . config('videocloud.account_id') . '&dimensions=' . $dimensions;
+    public function __construct(){
+        $this->query = 'https://analytics.api.brightcove.com/v1/data?accounts=' . config('videocloud.account_id');
+        return $this;
+    }
+
+    // Input Parameter: Dimensions is a required parameter
+
+    public function dimensions($dimensions){
+        $this->query = $this->query . '&dimensions=' . $input; 
         return $this;
     }
 
