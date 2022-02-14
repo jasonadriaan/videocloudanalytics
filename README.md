@@ -1,4 +1,4 @@
-# A simple way to use Brightcove's VideoCloud Analytics API
+# A Laravel Wrapper for Brightcove's VideoCloud Analytics API
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jasonadriaan/videocloudanalytics.svg?style=flat-square)](https://packagist.org/packages/jasonadriaan/videocloudanalytics)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/jasonadriaan/videocloudanalytics/run-tests?label=tests)](https://github.com/jasonadriaan/videocloudanalytics/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -64,7 +64,9 @@ class main extends Controller
 
 ```
 
-The only required field would be the dimensions field. If you do not provide it the API call will fail.
+The only required field would be the dimensions field. If you do not provide it the API call will fail. 
+
+For the full Dimension Guide please go read the [official documentation](https://apis.support.brightcove.com/analytics/dimension-guides/index.html).
 
 
 ## Changelog
