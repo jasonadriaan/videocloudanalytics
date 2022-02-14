@@ -25,7 +25,7 @@ class VideoCloudAnalytics
 
     // Input Parameter: Dimensions is a required parameter
 
-    public function dimensions($dimensions){
+    public function dimensions($input){
         $this->query = $this->query . '&dimensions=' . $input; 
         return $this;
     }
