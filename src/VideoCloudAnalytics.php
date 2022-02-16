@@ -135,7 +135,7 @@ class VideoCloudAnalytics
     private function request($request){
 
         $headers = $this->authenticate();
-        $response = Http::withHeaders($headers)->get($this->query);
+        $response = Http::withHeaders($headers)->get($request);
 
         return $response->collect();
 
