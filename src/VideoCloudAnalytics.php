@@ -14,76 +14,100 @@ use Illuminate\Support\Facades\Http;
 
 class VideoCloudAnalytics
 {
-    private $query;
+    private $base_url;
+    private $dimensions = '';
+    private $where = '';
+    private $limit = '';
+    private $offset = '';
+    private $sort = '';
+    private $fields = '';
+    private $reconciled = '';
+    private $from = '';
+    private $to = '';
 
     // This method sets up the API query
 
     public function __construct(){
-        $this->query = 'https://analytics.api.brightcove.com/v1/data?accounts=' . config('videocloud.account_id');
+        $this->base_url = 'https://analytics.api.brightcove.com/v1/data?accounts=' . config('videocloud.account_id');
         return $this;
+    }
+
+    public function get(){
+        return $this->request(
+                        $this->base_url 
+                        . $this->dimensions 
+                        . $this->where        
+                        . $this->limit
+                        . $this->offset 
+                        . $this->sort 
+                        . $this->fields
+                        . $this->reconciled
+                        . $this->from
+                        . $this->to
+        );
     }
 
     // Input Parameter: Dimensions is a required parameter
 
-    public function dimensions($input){
-        $this->query = $this->query . '&dimensions=' . $input; 
+    public function dimensions(string $dimensions = null){
+        $this->dimensions = (empty($dimensions)) ? '&dimensions=' . $dimensions : ''; 
         return $this;
     }
 
 
     // Input Parameter: Where is not required parameter
 
-    public function where($input){ 
-        $this->query = $this->query . '&where=' . $input; 
+    public function where(string $where = null){ 
+        $this->where = (empty($where)) ? '&where=' . $where : ''; 
         return $this;
     }
 
     // Limit is not a required parameter. It will default to 10 if not explicitly set.
 
-    public function limit($input){ 
-        $this->query = $this->query . '&limit=' . $input; 
+    public function limit(int $limit = null){ 
+        $this->limit = (empty($limit)) ? '&limit=' . $limit : ''; 
         return $this;
     }
     
     // Offset is not a required parameter.
 
-    public function offset($input){ 
-        $this->query = $this->query . '&offset=' . $input; 
+    public function offset(int $offset = null){ 
+        $this->offset = (empty($offset)) ? '&offset=' . $offset : ''; 
         return $this;
     }
 
     // Sort is not a required parameter.
 
-    public function sort($input){ 
-        $this->query = $this->query . '&sort=' . $input; 
+    public function sort(string $sort = null){ 
+        $this->sort = (empty($sort)) ? '&sort=' . $sort : ''; 
         return $this;
     }
 
     // Fields is not a required parameter.
 
-    public function fields($input){ 
-        $this->query = $this->query . '&fields=' . $input; 
+    public function fields(string $fields = null){ 
+        $this->fields = (empty($fields)) ? '&fields=' . $fields : ''; 
         return $this;
     }
 
     // Reconiled is not a required parameter.
 
-    public function reconciled($input){ 
-        $this->query = $this->query . '&reconciled=' . $input; 
+    public function reconciled(string $reconciled = null){ 
+        $this->reconciled = (empty($reconciled)) ? '&reconciled=' . $reconciled : ''; 
         return $this;
     }
 
     // From is not a required parameter.
 
-    public function from($input){ 
-        $this->query = $this->query . '&from=' . $input; 
+    public function from(string $from = null){ 
+        $this->from = (empty($from)) ? '&from=' . $from : ''; 
         return $this;
     }
 
     // To is not a required parameter.
 
-    public function to($input){ 
-        $this->query = $this->query . '&to=' . $input; 
+    public function to(string $to = null){ 
+        $this->to = (empty($to)) ? '&to=' . $to : ''; 
         return $this;
     }
 
@@ -91,12 +115,11 @@ class VideoCloudAnalytics
 
     private function authenticate(){
 
-         $auth_string = config('videocloud.api_key') . ':' . config('videocloud.api_secret');
-         $credentials = base64_encode($auth_string);
+         $auth_string = base64_encode(config('videocloud.api_key') . ':' . config('videocloud.api_secret'));
 
          $response = Http::withHeaders([
              'Content-Type' => 'application/x-www-form-urlencoded',
-             'Authorization' => 'Basic ' . $credentials,
+             'Authorization' => 'Basic ' . $auth_string,
          ])->post('https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials');
 
          $response->throw();
@@ -109,7 +132,7 @@ class VideoCloudAnalytics
 
     // This is where the actual call is made and it returns a Laravel Collection for your convenience.
 
-    public function get(){
+    private function request($request){
 
         $headers = $this->authenticate();
         $response = Http::withHeaders($headers)->get($this->query);
