@@ -28,7 +28,7 @@ class VideoCloudAnalytics
     // This method sets up the API query
 
     public function __construct(){
-        $this->base_url = 'https://analytics.api.brightcove.com/v1/data?accounts=' . config('videocloud.account_id');
+        $this->base_url = 'https://analytics.api.brightcove.com/v1/data?accounts=' . config('videocloudanalytics.account_id');
         return $this;
     }
 
@@ -115,7 +115,7 @@ class VideoCloudAnalytics
 
     private function authenticate(){
 
-         $auth_string = base64_encode(config('videocloud.api_key') . ':' . config('videocloud.api_secret'));
+         $auth_string = base64_encode(config('videocloudanalytics.api_key') . ':' . config('videocloudanalytics.api_secret'));
 
          $response = Http::withHeaders([
              'Content-Type' => 'application/x-www-form-urlencoded',
