@@ -50,7 +50,7 @@ class VideoCloudAnalytics
     // Input Parameter: Dimensions is a required parameter
 
     public function dimensions(string $dimensions = null){
-        $this->dimensions = (empty($dimensions)) ? '&dimensions=' . $dimensions : ''; 
+        $this->dimensions = (!empty($dimensions)) ? '&dimensions=' . $dimensions : ''; 
         return $this;
     }
 
@@ -58,56 +58,56 @@ class VideoCloudAnalytics
     // Input Parameter: Where is not required parameter
 
     public function where(string $where = null){ 
-        $this->where = (empty($where)) ? '&where=' . $where : ''; 
+        $this->where = (!empty($where)) ? '&where=' . $where : ''; 
         return $this;
     }
 
     // Limit is not a required parameter. It will default to 10 if not explicitly set.
 
     public function limit(int $limit = null){ 
-        $this->limit = (empty($limit)) ? '&limit=' . $limit : ''; 
+        $this->limit = (!empty($limit)) ? '&limit=' . $limit : ''; 
         return $this;
     }
     
     // Offset is not a required parameter.
 
     public function offset(int $offset = null){ 
-        $this->offset = (empty($offset)) ? '&offset=' . $offset : ''; 
+        $this->offset = (!empty($offset)) ? '&offset=' . $offset : ''; 
         return $this;
     }
 
     // Sort is not a required parameter.
 
     public function sort(string $sort = null){ 
-        $this->sort = (empty($sort)) ? '&sort=' . $sort : ''; 
+        $this->sort = (!empty($sort)) ? '&sort=' . $sort : ''; 
         return $this;
     }
 
     // Fields is not a required parameter.
 
     public function fields(string $fields = null){ 
-        $this->fields = (empty($fields)) ? '&fields=' . $fields : ''; 
+        $this->fields = (!empty($fields)) ? '&fields=' . $fields : ''; 
         return $this;
     }
 
     // Reconiled is not a required parameter.
 
     public function reconciled(string $reconciled = null){ 
-        $this->reconciled = (empty($reconciled)) ? '&reconciled=' . $reconciled : ''; 
+        $this->reconciled = (!empty($reconciled)) ? '&reconciled=' . $reconciled : ''; 
         return $this;
     }
 
     // From is not a required parameter.
 
     public function from(string $from = null){ 
-        $this->from = (empty($from)) ? '&from=' . $from : ''; 
+        $this->from = (!empty($from)) ? '&from=' . $from : ''; 
         return $this;
     }
 
     // To is not a required parameter.
 
     public function to(string $to = null){ 
-        $this->to = (empty($to)) ? '&to=' . $to : ''; 
+        $this->to = (!empty($to)) ? '&to=' . $to : ''; 
         return $this;
     }
 
